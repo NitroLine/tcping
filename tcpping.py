@@ -52,7 +52,7 @@ while count < maxCount:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         else:
             s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM, 0)
-        s.settimeout(1)
+        s.settimeout(args.timeout)
         s_start = timer()
         try:
             s.connect((host, port))
