@@ -1,9 +1,10 @@
-import sys
-import socket
-import time
-import signal
-from timeit import default_timer as timer
 import argparse
+import signal
+import socket
+import sys
+import time
+from timeit import default_timer as timer
+
 parser = argparse.ArgumentParser()
 parser.add_argument("host", type=str, help="Host for tcp ping",
                     metavar="HOST")
@@ -12,7 +13,7 @@ parser.add_argument("ports", type=int, help="Port for tcp ping (default=80)", de
 parser.add_argument("-c", "--count", type=int, default=10000,
                     metavar='MAX_COUNT', required=False,
                     help="max count of ping request")
-parser.add_argument("-w", "--ip6", action="store_true",
+parser.add_argument("-6", "--ipv6", action="store_true",
                     help="flag for use IPv6 address")
 parser.add_argument("-t", "--timeout", type=float, default=1, metavar='TIME', required=False,
                     help="ping timeout in seconds (default=1)")
@@ -24,23 +25,26 @@ count = 0
 
 ports_status = dict()
 for port in ports:
-    ports_status[port] = { 'count': 0, 'passed': 0, 'failed': 0}
+    ports_status[port] = {'count': 0, 'passed': 0, 'failed': 0}
+
 
 def signal_handler(signal, frame):
-    getResults()
+    get_results()
     sys.exit(0)
 
 
 signal.signal(signal.SIGINT, signal_handler)
 
 
-def getResults():
+def get_results():
     for port, status in ports_status.items():
         lRate = 0
         if status['failed'] != 0:
             lRate = status['failed'] / (status['count']) * 100
             lRate = "%.2f" % lRate
-        print(f"\nTCP Ping Results for {port} port: [{status['count']}/{status['passed']}/{status['failed']}] Total/Pass/Fail (Failed: {lRate}%)")
+        print(f"\nTCP Ping Results for {port} port: [{status['count']}"
+              f"/{status['passed']}/{status['failed']}] "
+              f"Total/Pass/Fail (Failed: {lRate}%)")
 
 
 while count < maxCount:
@@ -71,4 +75,4 @@ while count < maxCount:
             ports_status[port]['passed'] += 1
     if count < maxCount:
         time.sleep(1)
-getResults()
+get_results()
