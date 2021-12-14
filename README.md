@@ -13,7 +13,7 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   -c MAX_COUNT, --count MAX_COUNT
-                        max count of ping request
+                        max count of ping request (default=10000)
   -6, --ipv6            flag for use IPv6 address
   -t TIME, --timeout TIME
                         ping timeout in seconds (default=1)
