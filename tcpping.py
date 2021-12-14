@@ -12,7 +12,7 @@ parser.add_argument("ports", type=int, help="Port for tcp ping (default=80)", de
                     metavar="PORT", nargs='+')
 parser.add_argument("-c", "--count", type=int, default=10000,
                     metavar='MAX_COUNT', required=False,
-                    help="max count of ping request")
+                    help="max count of ping request (default=10000)")
 parser.add_argument("-6", "--ipv6", action="store_true",
                     help="flag for use IPv6 address")
 parser.add_argument("-t", "--timeout", type=float, default=1, metavar='TIME', required=False,
