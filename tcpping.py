@@ -52,7 +52,7 @@ while count < maxCount:
     for port in ports_status:
         ports_status[port]['count'] += 1
         success = False
-        if not args.ip6:
+        if not args.ipv6:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         else:
             s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM, 0)
